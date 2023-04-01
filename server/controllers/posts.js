@@ -6,7 +6,7 @@ import { v2 as cloudinary } from "cloudinary";
 
 dotenv.config();
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API,
+  apiKey: process.env.OPENAI_API3,
 });
 
 const openai = new OpenAIApi(configuration); // Initialize  OpenAI API  instance
@@ -24,7 +24,8 @@ export const generatePost = async (req, res) => {
     const imageResponse = await openai.createImage({
       prompt: description,
       n: 1,
-      size: "1024x1024",
+      size: "256x256",
+      // size: "1024x1024",
       // response_format: "b64_json",
     });
     console.log("call to openai");
@@ -63,7 +64,7 @@ export const createPost = async (req, res) => {
     const photoUrl = await cloudinary.uploader.upload(photo);
 
     console.log(photoUrl.url);
-
+    user.credits -= 1;
     const newPost = new Post({
       userId,
       firstName: user.firstName,
@@ -75,6 +76,7 @@ export const createPost = async (req, res) => {
       picturePath: photoUrl.url,
       likes: {},
       comments: [],
+      credits,
     });
     await newPost.save();
 

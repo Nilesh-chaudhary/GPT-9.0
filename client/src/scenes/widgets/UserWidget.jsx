@@ -46,6 +46,8 @@ const UserWidget = ({ userId, picturePath }) => {
     viewedProfile,
     impressions,
     friends,
+    totalLikes,
+    credits,
   } = user;
 
   return (
@@ -65,7 +67,8 @@ const UserWidget = ({ userId, picturePath }) => {
               fontWeight="500"
               sx={{
                 "&:hover": {
-                  color: palette.primary.light,
+                  color: "#4bb1ff",
+                  // color: palette.primary.light,
                   cursor: "pointer",
                 },
               }}
@@ -117,13 +120,13 @@ const UserWidget = ({ userId, picturePath }) => {
         <FlexBetween mb="0.5rem">
           <Typography color={medium}>Total likes</Typography>
           <Typography color={main} fontWeight="500">
-            {"127k"}
+            {totalLikes}
           </Typography>
         </FlexBetween>
         <FlexBetween>
           <Typography color={medium}>Total credits remaining</Typography>
           <Typography color={main} fontWeight="500">
-            {12}
+            {credits}
           </Typography>
         </FlexBetween>
       </Box>
@@ -141,12 +144,22 @@ const UserWidget = ({ userId, picturePath }) => {
             <img src="../assets/twitter.png" alt="twitter" />
             <Box>
               <Typography color={main} fontWeight="500">
-                Twitter
+                {firstName} | Twitter
               </Typography>
               <Typography color={medium}>Social Network</Typography>
             </Box>
           </FlexBetween>
-          <EditOutlined sx={{ color: main }} />
+          <a href="https://www.twitter.com " style={{ listStyle: "none" }}>
+            <EditOutlined
+              // onClick={window.open("https://www.google.com", "_blank")}
+              sx={{
+                color: main,
+                "&:hover": {
+                  color: "#00D5FA",
+                },
+              }}
+            />
+          </a>
         </FlexBetween>
 
         <FlexBetween gap="1rem">
@@ -154,12 +167,23 @@ const UserWidget = ({ userId, picturePath }) => {
             <img src="../assets/linkedin.png" alt="linkedin" />
             <Box>
               <Typography color={main} fontWeight="500">
-                Linkedin
+                {firstName} | Linkedin
               </Typography>
+
               <Typography color={medium}>Network Platform</Typography>
             </Box>
           </FlexBetween>
-          <EditOutlined sx={{ color: main }} />
+          <a href="https://www.linkedin.com " style={{ listStyle: "none" }}>
+            <EditOutlined
+              // onClick={window.open("https://www.google.com", "_blank")}
+              sx={{
+                color: main,
+                "&:hover": {
+                  color: "#00D5FA",
+                },
+              }}
+            />
+          </a>
         </FlexBetween>
       </Box>
     </WidgetWrapper>

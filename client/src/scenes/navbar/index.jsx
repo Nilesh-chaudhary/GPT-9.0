@@ -24,6 +24,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "state";
 import { useNavigate } from "react-router-dom";
 import FlexBetween from "components/FlexBetween";
+import logo from "../medialogo2.png";
+import "./style.css";
 
 const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
@@ -44,6 +46,7 @@ const Navbar = () => {
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
       <FlexBetween gap="1.75rem">
+        <img className="imageclass" src={logo} />
         <Typography
           fontWeight="bold"
           fontSize="clamp(1rem, 2rem, 2.25rem)"
@@ -51,7 +54,8 @@ const Navbar = () => {
           onClick={() => navigate("/home")}
           sx={{
             "&:hover": {
-              color: primaryLight,
+              color: "#74eaff",
+              // color: "#6affff",
               cursor: "pointer",
             },
           }}
@@ -83,9 +87,30 @@ const Navbar = () => {
               <LightMode sx={{ color: dark, fontSize: "25px" }} />
             )}
           </IconButton>
-          <Message sx={{ fontSize: "25px" }} />
-          <Notifications sx={{ fontSize: "25px" }} />
-          <Help sx={{ fontSize: "25px" }} />
+          <Message
+            sx={{
+              fontSize: "25px",
+              "&:hover": {
+                color: "#00D5FA",
+              },
+            }}
+          />
+          <Notifications
+            sx={{
+              fontSize: "25px",
+              "&:hover": {
+                color: "#00D5FA",
+              },
+            }}
+          />
+          <Help
+            sx={{
+              fontSize: "25px",
+              "&:hover": {
+                color: "#00D5FA",
+              },
+            }}
+          />
           <FormControl variant="standard" value={fullName}>
             <Select
               value={fullName}
@@ -100,6 +125,9 @@ const Navbar = () => {
                 },
                 "& .MuiSelect-select:focus": {
                   backgroundColor: neutralLight,
+                },
+                "&:hover": {
+                  color: "#00D5FA",
                 },
               }}
               input={<InputBase />}

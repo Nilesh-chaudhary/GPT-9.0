@@ -38,6 +38,14 @@ const UserSchema = new mongoose.Schema(
     occupation: String,
     viewedProfile: Number,
     impressions: Number,
+    totalLikes: {
+      type: String,
+      default: "1.2k",
+    },
+    credits: {
+      type: Number,
+      default: 15,
+    },
   },
   { timestamps: true }
 );
