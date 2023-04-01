@@ -24,6 +24,8 @@ import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
+import Loader from "./Loader";
+import "./test.css";
 
 const MyPostWidget = ({ picturePath }) => {
   const dispatch = useDispatch();
@@ -57,6 +59,41 @@ const MyPostWidget = ({ picturePath }) => {
     setPost("");
   };
 
+  // added by me
+
+  const [form, setForm] = useState({
+    name: "",
+    prompt: "",
+    photo: "",
+  });
+  const [generatingImg, setGeneratingImg] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const handleGenerate = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("userId", _id);
+      formData.append("description", post);
+      setGeneratingImg(true);
+      const response = await fetch("https://localhost:3001/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          description: post,
+        }),
+      });
+
+      const data = await response.json();
+      setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+    } catch (err) {
+      alert(err);
+    } finally {
+      setGeneratingImg(false);
+    }
+  };
+  // end of added by me
+
   return (
     <WidgetWrapper>
       <FlexBetween gap="1.5rem">
@@ -73,6 +110,7 @@ const MyPostWidget = ({ picturePath }) => {
           }}
         />
       </FlexBetween>
+
       {isImage && (
         <Box
           border={`1px solid ${medium}`}
@@ -117,6 +155,14 @@ const MyPostWidget = ({ picturePath }) => {
           </Dropzone>
         </Box>
       )}
+      <Divider sx={{ margin: "1.25rem 0" }} />
+      <div className="testout ">
+        {generatingImg && (
+          <div className="test">
+            <Loader />
+          </div>
+        )}
+      </div>
 
       <Divider sx={{ margin: "1.25rem 0" }} />
 
@@ -143,10 +189,25 @@ const MyPostWidget = ({ picturePath }) => {
               <Typography color={mediumMain}>Attachment</Typography>
             </FlexBetween>
 
-            <FlexBetween gap="0.25rem">
+            {/* <FlexBetween gap="0.25rem">
               <MicOutlined sx={{ color: mediumMain }} />
               <Typography color={mediumMain}>Audio</Typography>
-            </FlexBetween>
+            </FlexBetween> */}
+
+            {/* added by me  */}
+
+            <Button
+              disabled={!post}
+              onClick={handleGenerate}
+              sx={{
+                // color: "#fff",
+                color: palette.text.primary,
+                backgroundColor: palette.success.light,
+                borderRadius: "3rem",
+              }}
+            >
+              Generate
+            </Button>
           </>
         ) : (
           <FlexBetween gap="0.25rem">

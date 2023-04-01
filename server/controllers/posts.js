@@ -2,9 +2,7 @@ import Post from "../models/Post.js";
 import User from "../models/User.js";
 import * as dotenv from "dotenv";
 import { Configuration, OpenAIApi } from "openai";
-import axios from "axios";
-import fs from "fs";
-import path from "path";
+import { v2 as cloudinary } from "cloudinary";
 
 dotenv.config();
 const configuration = new Configuration({
@@ -13,26 +11,56 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration); // Initialize  OpenAI API  instance
 
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+//generate post
+export const generatePost = async (req, res) => {
+  const { description } = req.body;
+  try {
+    const imageResponse = await openai.createImage({
+      prompt: description,
+      n: 1,
+      size: "1024x1024",
+      response_format: "b64_json",
+    });
+    console.log("call to openai");
+    const image = imageResponse.data.data[0].b64_json;
+    // const image = imageResponse.data.data[0].url;
+
+    res.status(200).json({
+      success: true,
+      photo: image,
+    });
+    // res.status(200).json({ photo: image });
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.status);
+      console.log(error.response.data);
+    } else {
+      console.log(error.message);
+    }
+
+    res.status(400).json({
+      success: false,
+      error: "The image could not be generated",
+    });
+  }
+};
+
 /* CREATE */
 export const createPost = async (req, res) => {
   try {
     // I need to do a change here for generating picture
     // and posting
-    const { userId, description, picturePath } = req.body;
+    const { userId, description, photo } = req.body;
+    // const { userId, description, picturePath } = req.body;
     const user = await User.findById(userId);
-    // console.log("hi");
-    //added
-    // const imageResponse = await openai.createImage({
-    //   prompt: ` ${description}`,
-    //   n: 1,
-    //   size: [512, 512],
-    //   response_format: "b64_json",
-    // });
-    // const picturepathofgeneratedimage = `public/assets/${Date.now()}.png`;
-    // const val = Date.now();
-    // const image = imageResponse.data.data[0].b64_json;
 
-    // added
+    const photoUrl = await cloudinary.uploader.upload(photo);
 
     const newPost = new Post({
       userId,
@@ -40,8 +68,9 @@ export const createPost = async (req, res) => {
       lastName: user.lastName,
       location: user.location,
       description,
+      // userPicturePath: photoUrl.url,
       userPicturePath: user.picturePath,
-      picturePath,
+      picturePath: photoUrl.url,
       likes: {},
       comments: [],
     });
