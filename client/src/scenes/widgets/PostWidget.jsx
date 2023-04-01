@@ -65,9 +65,9 @@ const PostWidget = ({
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
           // src={`https://th.bing.com/th/id/OIP.4XB8NF1awQyApnQDDmBmQwHaEo?w=298&h=186&c=7&r=0&o=5&dpr=1.3&pid=1.7`}
-          // src={``${picturePath}``}
+          src={picturePath}
           // src={`http://localhost:3001/assets/${picturePath}`}
-          src={`https://oaidalleapiprodscus.blob.core.windows.net/private/org-tr4L3TJO6xPTuMmLLTQLlzU0/user-l84WdRVUgHNFUFQohPkHbVnV/img-Axwp1KWk99CpBsNRJiOoUR2W.png?st=2023-03-31T19%3A01%3A09Z&se=2023-03-31T21%3A01%3A09Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-03-31T15%3A55%3A22Z&ske=2023-04-01T15%3A55%3A22Z&sks=b&skv=2021-08-06&sig=jTvu4s38LYdKYcdz9Ox40IDsgxqovKbIQCiB4Mt%2B/gg%3D`}
+          // src={``}
         />
       )}
       <FlexBetween mt="0.25rem">

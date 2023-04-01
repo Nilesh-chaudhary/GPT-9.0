@@ -25,11 +25,11 @@ export const generatePost = async (req, res) => {
       prompt: description,
       n: 1,
       size: "1024x1024",
-      response_format: "b64_json",
+      // response_format: "b64_json",
     });
     console.log("call to openai");
-    const image = imageResponse.data.data[0].b64_json;
-    // const image = imageResponse.data.data[0].url;
+    // const image = imageResponse.data.data[0].b64_json;
+    const image = imageResponse.data.data[0].url;
 
     res.status(200).json({
       success: true,
@@ -61,6 +61,8 @@ export const createPost = async (req, res) => {
     const user = await User.findById(userId);
 
     const photoUrl = await cloudinary.uploader.upload(photo);
+
+    console.log(photoUrl.url);
 
     const newPost = new Post({
       userId,
