@@ -39,10 +39,7 @@ const MyPostWidget = ({ picturePath }) => {
   const mediumMain = palette.neutral.mediumMain;
   const medium = palette.neutral.medium;
   const [imgSrc, setImgSrc] = useState(
-    // "https://th.bing.com/th/id/OIP.vZgJqtt_wEo2YwjHF11gjgHaEK?pid=ImgDet&rs=1"
-    // "https://i.pinimg.com/originals/a5/1b/ea/a51beadf882cf3cc1d4f888988e13da1.jpg"
-    // "https://th.bing.com/th/id/OIP.nKn8i9la99INf9v_TnIpVwHaHW?w=199&h=198&c=7&r=0&o=5&dpr=1.3&pid=1.7"
-    "https://th.bing.com/th/id/OIP.vXGXN6fEpeUhAaQ-ZDh6zQHaGA?w=209&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+    "https://3.bp.blogspot.com/-9uHqjnaHr9Y/WPzFYXaZdyI/AAAAAAAAAiQ/HakR5nldChA-My0HKXkL-wxSlldwlK0vQCLcB/s1600/photoshop-mr.-bean-2.jpg"
   );
   const handlePost = async () => {
     const formData = new FormData();

@@ -28,7 +28,7 @@ export const generatePost = async (req, res) => {
       // size: "1024x1024",
       // response_format: "b64_json",
     });
-    console.log("call to openai");
+    // console.log("call to openai");
     // const image = imageResponse.data.data[0].b64_json;
     const image = imageResponse.data.data[0].url;
 
@@ -63,8 +63,7 @@ export const createPost = async (req, res) => {
 
     const photoUrl = await cloudinary.uploader.upload(photo);
 
-    console.log(photoUrl.url);
-    user.credits -= 1;
+    // console.log(photoUrl.url);
     const newPost = new Post({
       userId,
       firstName: user.firstName,
@@ -76,7 +75,8 @@ export const createPost = async (req, res) => {
       picturePath: photoUrl.url,
       likes: {},
       comments: [],
-      credits,
+      credits: user.credits - 1,
+      totalPosts: user.totalPosts + 1,
     });
     await newPost.save();
 

@@ -36,15 +36,25 @@ const UserSchema = new mongoose.Schema(
     },
     location: String,
     occupation: String,
-    viewedProfile: Number,
-    impressions: Number,
+    viewedProfile: {
+      type: Number,
+      default: 0,
+    },
+    impressions: {
+      type: Number,
+      default: 0,
+    },
     totalLikes: {
       type: String,
-      default: "1.2k",
+      default: "0",
     },
     credits: {
       type: Number,
       default: 15,
+    },
+    totalPosts: {
+      type: Number,
+      default: 0,
     },
   },
   { timestamps: true }

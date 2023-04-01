@@ -48,6 +48,7 @@ const UserWidget = ({ userId, picturePath }) => {
     friends,
     totalLikes,
     credits,
+    totalPosts,
   } = user;
 
   return (
@@ -102,7 +103,7 @@ const UserWidget = ({ userId, picturePath }) => {
         <FlexBetween mb="0.5rem">
           <Typography color={medium}>Total posts</Typography>
           <Typography color={main} fontWeight="500">
-            {532}
+            {totalPosts}
           </Typography>
         </FlexBetween>
         <FlexBetween mb="0.5rem">
