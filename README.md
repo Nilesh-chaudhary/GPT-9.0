@@ -13,7 +13,7 @@ This application is also gamified such that user gets 15 credits each month and 
 <img style="width:60%; height:60%" src="https://user-images.githubusercontent.com/83772913/229307949-597f7bc1-4e57-43bc-80c8-a8a31ecaa58b.png"/>
 
 ### Home page UI
-<img style="width:40%; height:40%"   src="https://user-images.githubusercontent.com/83772913/229308008-d4fc0e0f-37cb-44f5-a65d-1ae3242e84d8.png"/>
+<img style="width:70%; height:70%"   src="https://user-images.githubusercontent.com/83772913/229308008-d4fc0e0f-37cb-44f5-a65d-1ae3242e84d8.png"/>
 
 ### Posts UI
 <div style="display:flex; flex-direction:column" >
