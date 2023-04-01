@@ -30,7 +30,7 @@ import "./test.css";
 const MyPostWidget = ({ picturePath }) => {
   const dispatch = useDispatch();
   const [isImage, setIsImage] = useState(false);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const [post, setPost] = useState("");
   const { palette } = useTheme();
   const { _id } = useSelector((state) => state.user);
@@ -44,11 +44,15 @@ const MyPostWidget = ({ picturePath }) => {
     formData.append("userId", _id);
     formData.append("description", post);
     if (image) {
-      formData.append("picture", image);
-      formData.append("picturePath", image.name);
+      // formData.append("picture", image);
+      // formData.append("picturePath", image.name);
+      formData.append("picture", form.photo);
+      // formData.append("picturePath", form.photo);
+      formData.append("photo", form.photo);
     }
 
-    const response = await fetch(`http://localhost:3001/posts`, {
+    // const response = await fetch(`http://localhost:3001/posts`, {
+    const response = await fetch(`http://localhost:3001/posts/create`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
@@ -66,7 +70,7 @@ const MyPostWidget = ({ picturePath }) => {
     prompt: "",
     photo: "",
   });
-  const [generatingImg, setGeneratingImg] = useState(true);
+  const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
   const handleGenerate = async () => {
     try {
@@ -74,7 +78,7 @@ const MyPostWidget = ({ picturePath }) => {
       formData.append("userId", _id);
       formData.append("description", post);
       setGeneratingImg(true);
-      const response = await fetch("https://localhost:3001/", {
+      const response = await fetch("http://localhost:3001/posts/gen", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -85,7 +89,7 @@ const MyPostWidget = ({ picturePath }) => {
       });
 
       const data = await response.json();
-      setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+      setForm({ ...form, photo: data.photo });
     } catch (err) {
       alert(err);
     } finally {
@@ -156,12 +160,22 @@ const MyPostWidget = ({ picturePath }) => {
         </Box>
       )}
       <Divider sx={{ margin: "1.25rem 0" }} />
-      <div className="testout ">
-        {generatingImg && (
-          <div className="test">
+      <div className="outermostdiv">
+        <div className="testout ">
+          {generatingImg ? (
+            // <div className="test">
             <Loader />
-          </div>
-        )}
+          ) : (
+            // </div>
+            <div className="test">
+              <img
+                className="genimg"
+                src={form.photo}
+                alt="write description and click on generate"
+              />
+            </div>
+          )}
+        </div>
       </div>
 
       <Divider sx={{ margin: "1.25rem 0" }} />
