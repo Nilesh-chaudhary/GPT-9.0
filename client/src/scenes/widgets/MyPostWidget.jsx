@@ -38,7 +38,9 @@ const MyPostWidget = ({ picturePath }) => {
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
   const mediumMain = palette.neutral.mediumMain;
   const medium = palette.neutral.medium;
-
+  const [imgSrc, setImgSrc] = useState(
+    "https://th.bing.com/th/id/OIP.vZgJqtt_wEo2YwjHF11gjgHaEK?pid=ImgDet&rs=1"
+  );
   const handlePost = async () => {
     const formData = new FormData();
     formData.append("userId", _id);
@@ -47,15 +49,27 @@ const MyPostWidget = ({ picturePath }) => {
       // formData.append("picture", image);
       // formData.append("picturePath", image.name);
       formData.append("picture", form.photo);
-      // formData.append("picturePath", form.photo);
+      formData.append("picturePath", form.photo);
       formData.append("photo", form.photo);
     }
 
-    // const response = await fetch(`http://localhost:3001/posts`, {
+    const userId = _id;
+    const description = post;
+    const photo = form.photo;
+
     const response = await fetch(`http://localhost:3001/posts/create`, {
       method: "POST",
-      headers: { Authorization: `Bearer ${token}` },
-      body: formData,
+
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+
+      body: JSON.stringify({
+        userId,
+        description,
+        photo,
+      }),
     });
     const posts = await response.json();
     dispatch(setPosts({ posts }));
@@ -90,6 +104,7 @@ const MyPostWidget = ({ picturePath }) => {
 
       const data = await response.json();
       setForm({ ...form, photo: data.photo });
+      setImgSrc(data.photo);
     } catch (err) {
       alert(err);
     } finally {
@@ -163,16 +178,22 @@ const MyPostWidget = ({ picturePath }) => {
       <div className="outermostdiv">
         <div className="testout ">
           {generatingImg ? (
-            // <div className="test">
-            <Loader />
-          ) : (
-            // </div>
             <div className="test">
-              <img
-                className="genimg"
-                src={form.photo}
-                alt="write description and click on generate"
-              />
+              <Loader />
+            </div>
+          ) : (
+            <div className="test">
+              <img className="genimg" src={imgSrc} alt={"image"} />
+              {/* <img className="genimg" src={form.photo} alt={saitama} /> */}
+              {/* {generatingImg ? (
+                <img
+                  className="genimg"
+                  src={form.photo}
+                  alt="write description and click on generate"
+                />
+              ) : (
+                "Generate Your Idea into image"
+              )} */}
             </div>
           )}
         </div>
