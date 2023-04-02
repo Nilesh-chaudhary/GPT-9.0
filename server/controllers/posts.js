@@ -18,39 +18,6 @@ cloudinary.config({
 });
 
 //generate post
-export const generatePost = async (req, res) => {
-  const { description } = req.body;
-  try {
-    const imageResponse = await openai.createImage({
-      prompt: description,
-      n: 1,
-      size: "256x256",
-      // size: "1024x1024",
-      // response_format: "b64_json",
-    });
-    // console.log("call to openai");
-    // const image = imageResponse.data.data[0].b64_json;
-    const image = imageResponse.data.data[0].url;
-
-    res.status(200).json({
-      success: true,
-      photo: image,
-    });
-    // res.status(200).json({ photo: image });
-  } catch (error) {
-    if (error.response) {
-      console.log(error.response.status);
-      console.log(error.response.data);
-    } else {
-      console.log(error.message);
-    }
-
-    res.status(400).json({
-      success: false,
-      error: "The image could not be generated",
-    });
-  }
-};
 
 /* CREATE */
 export const createPost = async (req, res) => {
@@ -81,7 +48,7 @@ export const createPost = async (req, res) => {
     await newPost.save();
 
     const post = await Post.find();
-    res.status(201).json(post);
+    res.status(201).json(post).sort({ createdAt: "desc" });
   } catch (err) {
     res.status(409).json({ message: err.message });
   }
@@ -90,7 +57,7 @@ export const createPost = async (req, res) => {
 /* READ */
 export const getFeedPosts = async (req, res) => {
   try {
-    const post = await Post.find();
+    const post = await Post.find().sort({ createdAt: "desc" });
     res.status(200).json(post);
   } catch (err) {
     res.status(404).json({ message: err.message });
