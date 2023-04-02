@@ -1,3 +1,6 @@
+
+<img style="width:20%; height:20%;" src="https://user-images.githubusercontent.com/83772913/229309933-1df193a4-dad9-415d-a32d-7ff674dab66f.png">
+
 # **AIShacKs**
 Aishacks is a Content media app where user can generate content/images by writing some description and and post directly inside app. Users can like, comment, Follow/Add friend each other in the app.
 Our app uses the API from Open AI's Dall-E to generate image.
