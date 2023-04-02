@@ -2,11 +2,11 @@
 <img style="width:20%; height:20%;" src="https://user-images.githubusercontent.com/83772913/229309933-1df193a4-dad9-415d-a32d-7ff674dab66f.png">
 
 # **AIShacKs**
-Aishacks is a Content media app where user can generate content/images by writing some description and and post directly inside app. Users can like, comment, Follow/Add friend each other in the app.
-Our app uses the API from Open AI's Dall-E to generate image.
-We created this app using Mern stack.
-This application is also gamified such that user gets 15 credits each month and can use those credits to generate the image (1 credit per image). Also user can earn more credits based on number of likes on his posts. For each 10k likes, the user get 1 credit to his account. More details will be given below.
+AIShacks is a content media app that allows users to generate images and other content by entering a description and posting it directly within the app. Users can engage with each other by liking, commenting, following, or adding friends. The app utilizes the DALL-E API from OpenAI to generate images, and it was developed using the MERN stack.
 
+The app also features gamification, where users receive 15 credits every month that they can use to generate images. Each image requires one credit. Moreover, users can earn additional credits based on the number of likes their posts receive. Specifically, for every 10,000 likes on a user's post, they will receive one credit.
+
+Please let us know if you need any further details regarding the app.
 
 # **Basic overview**
 ### Register page
@@ -88,6 +88,6 @@ node index.js/ nodemon index.js
 - UI/UX can be improved more for better experience.
 - Profile image can also be edited using this API
 - New version of GPT could be trained on newer data daily, so user can also generate latest news post in the app and share with everyone else.
-
+- future of this app is really leveraging
 
 

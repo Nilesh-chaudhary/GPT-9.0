@@ -231,8 +231,6 @@ const Form = () => {
               sx={{ gridColumn: "span 4" }}
             />
           </Box>
-
-          {/* BUTTONS */}
           <Box>
             <Button
               fullWidth
