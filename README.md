@@ -78,8 +78,13 @@ npm start
 
 ```
 cd server 
+create .env file and enter all the details mentioned in .example_env file
 npm install
 node index.js/ nodemon index.js
+```
+
+```
+you can reach out to me if got any errors
 ```
 
 ### Future scopes :

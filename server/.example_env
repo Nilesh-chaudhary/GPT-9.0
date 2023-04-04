@@ -1,0 +1,9 @@
+MONGO_URL =   'ypur mongodb atlas url'
+PORT = 3001
+JWT_SECRET = 'write anyting here'
+OPENAI_API_KEY = 'your open ai API key'
+CLOUDINARY_CLOUD_NAME = 'your cloudinary credential for name'
+CLOUDINARY_API_KEY = 'your cloudinary credential for API key'
+CLOUDINARY_API_SECRET = 'your cloudinary credential for secret'
+
+
