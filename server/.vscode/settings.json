@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/8803d0ee-3368-4e8b-8261-b186e284dd5e/resourceGroups/aishacks2/providers/Microsoft.Web/sites/aishacks",
+    "appService.deploySubpath": "."
+}

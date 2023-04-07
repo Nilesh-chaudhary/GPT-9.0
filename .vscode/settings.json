@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/8803d0ee-3368-4e8b-8261-b186e284dd5e/resourceGroups/Aimaze/providers/Microsoft.Web/sites/Aimaze",
+    "appService.deploySubpath": "."
+}
