@@ -8,6 +8,10 @@ The app also features gamification, where users receive 15 credits every month t
 
 Please let us know if you need any further details regarding the app.
 
+# **Checkout Demo Video!**
+# *Click below gif to get to the video!* <br>
+[![AIShacKs Demo](https://img.youtube.com/vi/PteqhspjfAw/0.jpg)](https://www.youtube.com/watch?v=PteqhspjfAw "See demo video!")
+
 # **Basic overview**
 ### Register page
 <img style="width:60%; height:60%"  src="https://user-images.githubusercontent.com/83772913/229307921-b6db2df0-d670-483b-871d-75903c7f58a7.png"/>
